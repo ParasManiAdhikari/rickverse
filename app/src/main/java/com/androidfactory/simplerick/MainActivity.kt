@@ -16,9 +16,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.androidfactory.network.Character
 import com.androidfactory.network.KtorClient
 import com.androidfactory.network.TestFile
+import com.androidfactory.network.models.domain.Character
+import com.androidfactory.network.models.domain.CharacterStatus
+import com.androidfactory.simplerick.components.character.CharacterStatusComponent
 import com.androidfactory.simplerick.ui.theme.SimpleRickTheme
 
 class MainActivity : ComponentActivity() {
@@ -60,10 +62,8 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     )
 }
 
-@Preview(showBackground = true, showSystemUi = true)
+@Preview
 @Composable
-fun GreetingPreview() {
-    SimpleRickTheme {
-        Greeting("Android")
-    }
+fun CharacterStatusComponentAlive(){
+    CharacterStatusComponent(characterStatus = CharacterStatus.Alive)
 }
