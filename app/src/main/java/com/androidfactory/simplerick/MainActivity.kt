@@ -21,7 +21,7 @@ import com.androidfactory.simplerick.ui.theme.SimpleRickTheme
 class MainActivity : ComponentActivity() {
 
     private val ktorClient = KtorClient()
-    private val cid = 1;
+    private val cid = 34;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,12 +42,16 @@ class MainActivity : ComponentActivity() {
                                 navController.navigate("character_episodes/$it")
                             }
                         }
+
                         composable(
                             route = "character_episodes/{characterId}",
                             arguments = listOf(navArgument("characterId") { type = NavType.IntType })
                         ) { backStackEntry ->
                             val characterId: Int = backStackEntry.arguments?.getInt("characterId") ?: -1
-                            CharacterEpisodeScreen(characterId = characterId)
+                            CharacterEpisodeScreen(
+                                characterId = characterId,
+                                ktorClient = ktorClient
+                            )
                         }
                     }
                 }

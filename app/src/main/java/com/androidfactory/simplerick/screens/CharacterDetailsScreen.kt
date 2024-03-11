@@ -2,15 +2,12 @@ package com.androidfactory.simplerick.screens
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -29,15 +26,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImage
-import coil.compose.SubcomposeAsyncImage
 import com.androidfactory.network.KtorClient
 import com.androidfactory.network.models.domain.Character
 import com.androidfactory.simplerick.components.character.CharacterDetailsNamePlateComponent
+import com.androidfactory.simplerick.components.common.CharacterImage
 import com.androidfactory.simplerick.components.common.DataPoint
 import com.androidfactory.simplerick.components.common.DataPointComponent
 import com.androidfactory.simplerick.ui.theme.RickAction
-import kotlinx.coroutines.delay
 
 @Composable
 fun CharacterDetailsScreen(
@@ -65,7 +60,6 @@ fun CharacterDetailsScreen(
     }
 
     LaunchedEffect(key1 = Unit, block = {
-        delay(500)
         character = ktorClient.getCharacter(characterId)
     })
 
@@ -91,15 +85,7 @@ fun CharacterDetailsScreen(
 
         // Image
         item {
-            AsyncImage(
-                model = character!!.imageUrl,
-                contentDescription = "Character image",
-                modifier = Modifier
-                    .width(200.dp)
-                    .aspectRatio(1f)
-                    .clip(RoundedCornerShape(12.dp)),
-            )
-            Spacer(modifier = Modifier.height(20.dp))
+            CharacterImage(imageurl = character!!.imageUrl)
         }
 
         // Data points

@@ -1,17 +1,41 @@
 package com.androidfactory.simplerick.screens
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Text
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.sp
-import com.androidfactory.simplerick.ui.theme.RickAction
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.tooling.preview.Preview
+import com.androidfactory.network.KtorClient
+import com.androidfactory.network.models.domain.Character
+import com.androidfactory.simplerick.components.common.CharacterImage
 
 @Composable
-fun CharacterEpisodeScreen(characterId: Int) {
-    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Text(text = "Episodes of Character : $characterId", fontSize = 28.sp, color = RickAction)
+fun CharacterEpisodeScreen(characterId: Int, ktorClient: KtorClient) {
+    var character by remember { mutableStateOf<Character?>(null) }
+
+    LaunchedEffect(key1 = Unit, block = {
+        character = ktorClient.getCharacter(characterId)
+    })
+
+    character?.let {
+        MainScreen(character = it)
     }
+}
+
+@Composable
+fun MainScreen(
+    character: Character
+) {
+    LazyColumn {
+        item { CharacterImage(imageurl = character!!.imageUrl) }
+    }
+}
+
+@Preview
+@Composable
+private fun PreviewMainScreen() {
+//    MainScreen()
 }
