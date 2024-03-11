@@ -26,7 +26,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     CharacterDetailsScreen(
                         ktorClient = ktorClient,
-                        characterId = 1
+                        characterId = 25
                     )
                 }
             }

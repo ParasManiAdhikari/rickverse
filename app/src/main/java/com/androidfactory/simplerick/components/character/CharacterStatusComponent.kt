@@ -21,7 +21,7 @@ fun CharacterStatusComponent(characterStatus: CharacterStatus) {
         modifier = Modifier
             .border(
                 width = 1.dp,
-                color = RickTextPrimary,
+                color = characterStatus.color,
                 shape = RoundedCornerShape(12.dp)
             )
             .padding(horizontal = 12.dp, vertical = 4.dp)
@@ -29,7 +29,7 @@ fun CharacterStatusComponent(characterStatus: CharacterStatus) {
         Text(
             text = "Status: ${characterStatus.displayName}",
             fontSize = 20.sp,
-            color = characterStatus.color
+            color = RickTextPrimary
         )
     }
 }
