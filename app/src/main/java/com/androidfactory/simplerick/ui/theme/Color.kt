@@ -11,7 +11,7 @@ val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
 val RickPrimary = Color(0xff262d3a)
-val RickAction = Color(0xffb5eefd)
+val RickAction = Color(0xFF87C268)
 val RickSurface = Color(0xffead7ce)
 val RickTextPrimary = Color(0xffffffff)
 val RickTextSecondary = Color(0xffead7ce)
