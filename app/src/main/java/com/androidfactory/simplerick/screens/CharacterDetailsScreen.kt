@@ -26,6 +26,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.SubcomposeAsyncImage
 import com.androidfactory.network.KtorClient
 import com.androidfactory.network.models.domain.Character
 import com.androidfactory.simplerick.components.character.CharacterDetailsNamePlateComponent
@@ -84,15 +85,15 @@ fun CharacterDetailsScreen(
 
         // Image
         item {
-//            SubcomposeAsyncImage(
-//                model = character!!.imageUrl,
-//                contentDescription = "Character image",
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .aspectRatio(1f)
-//                    .clip(RoundedCornerShape(12.dp)),
-//                loading = { LoadingState() }
-//            )
+            SubcomposeAsyncImage(
+                model = character!!.imageUrl,
+                contentDescription = "Character image",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .aspectRatio(1f)
+                    .clip(RoundedCornerShape(12.dp)),
+                loading = { LoadingState() }
+            )
         }
 
         // Data points
