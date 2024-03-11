@@ -2,6 +2,7 @@ package com.androidfactory.simplerick.screens
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -21,11 +23,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
 import coil.compose.SubcomposeAsyncImage
 import com.androidfactory.network.KtorClient
 import com.androidfactory.network.models.domain.Character
@@ -65,8 +69,9 @@ fun CharacterDetailsScreen(
     })
 
     LazyColumn(
+        horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.fillMaxSize(),
-        contentPadding = PaddingValues(all = 16.dp)
+        contentPadding = PaddingValues(all = 16.dp),
     ) {
         if (character == null) {
             item { LoadingState() }
@@ -85,20 +90,20 @@ fun CharacterDetailsScreen(
 
         // Image
         item {
-            SubcomposeAsyncImage(
+            AsyncImage(
                 model = character!!.imageUrl,
                 contentDescription = "Character image",
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .width(200.dp)
                     .aspectRatio(1f)
                     .clip(RoundedCornerShape(12.dp)),
-                loading = { LoadingState() }
             )
+            Spacer(modifier = Modifier.height(20.dp))
         }
 
         // Data points
         items(characterDataPoints) {
-            Spacer(modifier = Modifier.height(32.dp))
+            Spacer(modifier = Modifier.height(20.dp))
             DataPointComponent(dataPoint = it)
         }
 

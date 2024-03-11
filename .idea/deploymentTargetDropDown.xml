@@ -5,6 +5,9 @@
       <entry key="CharacterStatusComponentAlive">
         <State />
       </entry>
+      <entry key="PreviewCenteredLazyColumn">
+        <State />
+      </entry>
       <entry key="app">
         <State />
       </entry>
